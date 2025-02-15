@@ -21,6 +21,11 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
+# ホームページ
+@app.route('/')
+def home():
+    return render_template('home.jsx')#ホームページを呼ぶ　変更済
+
 # ユーザー登録
 @app.route('/register', methods=['POST'])
 def register():
