@@ -2,29 +2,50 @@ import { useState } from "react";
 import "../../styles/styles.css";
 import { Table } from "../compoments/bunrui"; // bunrui.js からインポート
 
-// 画像と名前のマッピング
-const images = [
-  Table.hat[0],
-  Table.jacket[0],
-  Table.tops[0],
-  Table.pants[0],
-  Table.shoes[0],
-];
+// 部位ごとの名称（localStorageを利用する場合の順番です）
+const names = ["トップス", "パンツ", "シューズ"];
 
-const names = ["帽子", "上着", "トップス", "パンツ・スカート", "靴"];
+const getRandomItem = (arr) => {
+  return arr[Math.floor(Math.random() * arr.length)];
+};
+
+const getRandomImagesFromStorage = () => {
+  const storedData = JSON.parse(localStorage.getItem("imagesData"));
+  if (storedData && storedData.length > 0) {
+    // 各部位ごとに画像の配列を用意（nullもあり得るので後で判定）
+    const topsImages = storedData.map((item) => item.tops);
+    const pantsImages = storedData.map((item) => item.pants);
+    const shoesImages = storedData.map((item) => item.shoes);
+    // ランダムに選択し、nullの場合はフォールバック画像に置き換え
+    const chosenTops = getRandomItem(topsImages) || "images/error/notfound.png";
+    const chosenPants =
+      getRandomItem(pantsImages) || "images/error/notfound.png";
+    const chosenShoes =
+      getRandomItem(shoesImages) || "images/error/notfound.png";
+    return [chosenTops, chosenPants, chosenShoes];
+  } else {
+    // localStorageに画像データがない場合は全てフォールバック画像を使用
+    return [
+      "images/error/notfound.png",
+      "images/error/notfound.png",
+      "images/error/notfound.png",
+    ];
+  }
+};
 
 const Home = () => {
-  const [currentImages, setCurrentImages] = useState(images);
+  // 初期表示はTableから（Table.jacket, Table.tops, Table.pants）
+  const [currentImages, setCurrentImages] = useState([
+    Table.jacket[0],
+    Table.tops[0],
+    Table.pants[0],
+  ]);
 
-  // 画像をランダムに並べ替える関数
+  // 返信（変身）ボタンを押したらlocalStorageからランダムに画像を表示
   const shuffleImages = () => {
-    const shuffledImages = images.map(
-      () => images[Math.floor(Math.random() * images.length)]
-    );
-    setCurrentImages(shuffledImages);
-
-    // ランダムに選ばれたアイテム名をローカルストレージに保存
-    localStorage.setItem("selectedItems", JSON.stringify(shuffledImages));
+    const newImages = getRandomImagesFromStorage();
+    setCurrentImages(newImages);
+    localStorage.setItem("selectedImages", JSON.stringify(newImages));
   };
 
   return (
@@ -55,7 +76,7 @@ const Home = () => {
           {currentImages.map((img, index) => (
             <div key={index} className="w-full flex flex-col items-center">
               <img
-                src={"/images/" + img}
+                src={img.startsWith("data:") ? img : "/" + img}
                 alt={`transform-${index}`}
                 className="w-48 h-48 object-cover transform transition duration-500 hover:scale-110"
               />
@@ -71,7 +92,7 @@ const Home = () => {
         onClick={shuffleImages}
         className="mt-10 px-4 py-3 bg-pink-400 text-white font-bold rounded-lg shadow-md hover:bg-yellow-400 transition"
       >
-        変身！
+        返信！
       </button>
 
       <div className="mt-12"></div>
