@@ -62,7 +62,7 @@ const Home = () => {
 
       <section id="rule" className="mb-12 text-center">
         <div className="p-6 mb-2 border-2 border-dashed border-paleyellow">
-          <p className="text-3xl sm:text-4xl lg:text-5xl font-bold p-4">
+          <p className="text-3xl sm:text-4xl lg:text-4xl font-bold p-4">
             ✨プリキュアみたいに部屋着から大変身しよう✨
           </p>
         </div>
