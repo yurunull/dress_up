@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/styles.css";
 import Top from "../images/top.png";
 import Hat from "../images/hat.jpg";
@@ -7,7 +7,16 @@ import Trainer from "../images/trainer.jpg";
 import Pants from "../images/pants.png";
 import Shoes from "../images/shoes.jpg";
 
+const images = [Hat, Jacket, Trainer, Pants, Shoes];
+const names = ["帽子", "上着", "トップス", "パンツ・スカート", "靴"];
+
 const Home = () => {
+  const [currentImages, setCurrentImages] = useState(images);
+
+  const shuffleImages = () => {
+    setCurrentImages(images.map(() => images[Math.floor(Math.random() * images.length)]));
+  };
+
   return (
     <div className="w-full text-center px-4">
       <section id="hero" className="mb-12">
@@ -16,37 +25,33 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="rule" className="mb-12 text-left">
-        <h2 className="subtitle pop text-waterblue text-7xl mb-10">このサイトの使い方は？</h2>
-        <div className="p-3 mb-2 border-2 border-dashed border-paleyellow">
-          <ul className="rule_list list-none p-3">
-            {["このサイトを使って服選びという困難を解決しよう！", 
-              "プリキュアみたいに大変身してね！"].map((text, index) => (
-              <li key={index} className="relative mb-5 pl-8 before:content-['▶'] before:absolute before:left-0 before:top-0 before:text-waterblue before:text-2xl">
-                {text}
-              </li>
-            ))}
-          </ul>
+      <section id="rule" className="mb-12 text-center">
+        <div className="p-6 mb-2 border-2 border-dashed border-paleyellow">
+          <p className="text-5xl font-bold p-4">✨プリキュアみたいに部屋着から大変身しよう✨</p>
         </div>
       </section>
 
-      <section id="member" className="mb-12 text-left">
-        <h2 className="subtitle pop text-waterblue text-5xl mb-10">種類</h2>
-        <div className="flex justify-center">
+      <section id="transform" className="mb-12 text-center mt-16">
+        <h2 className="font-bold subtitle pop text-waterblue text-6xl mb-12 relative inline-block after:content-[''] after:block after:h-4 after:bg-yellow-300 after:w-[130%] after:left-[-15%] after:opacity-60 after:-bottom-2 after:absolute">
+          変身✨
+        </h2>
+        <div className="flex justify-center mt-8">
           <div className="image-container">
-            {[Hat, Jacket, Trainer, Pants, Shoes].map((img, index) => (
-              <div key={index} className="image-box">
-                <img src={img} alt={`member-${index}`} />
-                <span className="name">{["帽子", "上着", "トップス", "パンツ・スカート", "靴"][index]}</span>
+            {currentImages.map((img, index) => (
+              <div key={index} className="image-box transform transition duration-500 hover:scale-110">
+                <img src={img} alt={`transform-${index}`} />
+                <span className="name text-lg font-semibold">{names[index]}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <button onClick={shuffleImages} className="mt-8 px-6 py-3 bg-blue-500 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition">
+        もう一度変身！
+      </button>
     </div>
   );
 };
 
 export default Home;
-
-//こんにちは
