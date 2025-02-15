@@ -36,9 +36,9 @@ const getRandomImagesFromStorage = () => {
 const Home = () => {
   // 初期表示はTableから（Table.jacket, Table.tops, Table.pants）
   const [currentImages, setCurrentImages] = useState([
-    Table.jacket[0],
-    Table.tops[0],
-    Table.pants[0],
+    "./images/hat.jpg",
+    "./images/pants.png",
+    "./images/trainer.jpg",
   ]);
 
   // 返信（変身）ボタンを押したらlocalStorageからランダムに画像を表示
