@@ -25,8 +25,12 @@ const Add = () => {
       shoes: shoesImage,
     };
 
+    let currentImagedata = JSON.parse(
+      localStorage.getItem("imagesData") || "[]"
+    );
+    currentImagedata.push(imagesData);
     // ローカルストレージに保存
-    localStorage.setItem("imageData", JSON.stringify(imagesData));
+    localStorage.setItem("imagesData", JSON.stringify(currentImagedata));
     alert("画像が保存されました！");
 
     // ページをリロードしてAdd画面に戻る
@@ -54,8 +58,17 @@ const Add = () => {
         />
         {topsImage ? (
           <div>
-            <img src={topsImage} alt="Tops Preview" className="mt-2 max-w-[200px]" />
-            <button onClick={() => setTopsImage(null)} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">削除</button>
+            <img
+              src={topsImage}
+              alt="Tops Preview"
+              className="mt-2 max-w-[200px]"
+            />
+            <button
+              onClick={() => setTopsImage(null)}
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+            >
+              削除
+            </button>
           </div>
         ) : (
           <p className="mt-2">選択されていません</p>
@@ -79,8 +92,17 @@ const Add = () => {
         />
         {pantsImage ? (
           <div>
-            <img src={pantsImage} alt="Pants Preview" className="mt-2 max-w-[200px]" />
-            <button onClick={() => setPantsImage(null)} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">削除</button>
+            <img
+              src={pantsImage}
+              alt="Pants Preview"
+              className="mt-2 max-w-[200px]"
+            />
+            <button
+              onClick={() => setPantsImage(null)}
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+            >
+              削除
+            </button>
           </div>
         ) : (
           <p className="mt-2">選択されていません</p>
@@ -104,8 +126,17 @@ const Add = () => {
         />
         {shoesImage ? (
           <div>
-            <img src={shoesImage} alt="Shoes Preview" className="mt-2 max-w-[200px]" />
-            <button onClick={() => setShoesImage(null)} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">削除</button>
+            <img
+              src={shoesImage}
+              alt="Shoes Preview"
+              className="mt-2 max-w-[200px]"
+            />
+            <button
+              onClick={() => setShoesImage(null)}
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+            >
+              削除
+            </button>
           </div>
         ) : (
           <p className="mt-2">選択されていません</p>
