@@ -46,4 +46,4 @@ def register():
 
     # 新しいユーザーをデータベースに追加
     new_user = User(username=username, password=hashed_password)
-    db.session.add(new_use
+    db.session.add(new_use)
