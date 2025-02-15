@@ -1,71 +1,204 @@
-/* 基本設定 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+.image-container {
+  display: flex;
+  /* 画像を横に並べる */
+  justify-content: space-between;
+  /* 画像の間にスペースを均等に配置 */
+  flex-wrap: nowrap;
+  /* 画像が折り返されないようにする */
 }
 
-header {
-  background-color: #4caf50;
-  color: white;
+.image-box {
   text-align: center;
-  padding: 20px 0;
+  width: 18%;
+  /* 各画像ボックスの幅を調整（100%を5分割） */
 }
 
-main {
-  padding: 20px;
+.image-box img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  /* 画像を1対1に保つ */
+  object-fit: cover;
+  /* 画像をボックスに合わせてクロップ */
+  border-radius: 30px;
 }
 
-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.image-box span {
+  display: block;
+  margin-top: 8px;
+}
+/* フォーム */
+.Form {
+  margin: 80px auto;
+  max-width: 720px;
 }
 
-form div {
-  margin-bottom: 15px;
+@media screen and (max-width: 480px) {
+  .Form {
+    margin-top: 40px;
+  }
 }
 
-label {
+.Form-Item {
+  border-top: 1px solid #ddd;
+  padding: 24px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* 縦方向に配置 */
+  align-items: flex-start;
+  /* 左寄せ */
+}
+
+@media screen and (max-width: 480px) {
+  .Form-Item {
+    padding: 16px;
+  }
+}
+
+.Form-Item:nth-child(5) {
+  border-bottom: 1px solid #ddd;
+}
+
+.Form-Item-Label {
+  width: auto;
+  max-width: 248px;
+  letter-spacing: 0.05em;
   font-weight: bold;
+  font-size: 18px;
+  text-align: left;
+  /* テキストを左寄せ */
 }
 
-input[type="text"],
-textarea,
-input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+@media screen and (max-width: 480px) {
+  .Form-Item-Label {
+    max-width: inherit;
+    font-size: 15px;
+  }
 }
 
-textarea {
-  height: 150px;
+.Form-Item-Label.isMsg {
+  margin-top: 8px;
+  margin-bottom: auto;
 }
 
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
+@media screen and (max-width: 480px) {
+  .Form-Item-Label.isMsg {
+    margin-top: 0;
+  }
 }
 
-button:hover {
-  background-color: #45a049;
-}
-
-footer {
+.Form-Item-Label-Required {
+  border-radius: 6px;
+  margin-right: 8px;
+  padding: 8px;
+  width: 48px;
+  display: inline-block;
   text-align: center;
-  padding: 10px;
-  background-color: #333;
-  color: white;
-  position: fixed;
-  bottom: 0;
+  background: #40a2fd;
+  color: #fff;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 480px) {
+  .Form-Item-Label-Required {
+    border-radius: 4px;
+    padding: 4px;
+    width: 32px;
+    font-size: 10px;
+  }
+}
+
+.Form-Item-Input,
+.Form-Item-Textarea {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 0 auto;
+  /* 中央に配置 */
+  padding: 0 1em;
+  background: #eaedf2;
+  font-size: 18px;
+  display: block;
   width: 100%;
+  max-width: 410px;
+}
+
+.Form-Item-Input {
+  height: 48px;
+}
+
+.Form-Item-Textarea {
+  height: 216px;
+}
+
+@media screen and (max-width: 480px) {
+  .Form-Item-Input,
+  .Form-Item-Textarea {
+    margin-top: 18px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .Form-Item-Textarea {
+    height: 200px;
+  }
+}
+
+.Form-Btn {
+  border-radius: 6px;
+  margin: 32px auto 0;
+  padding: 20px;
+  width: 280px;
+  display: block;
+  letter-spacing: 0.05em;
+  background: #40a2fd;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  /* テキストの中央揃え */
+  line-height: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .Form-Btn {
+    margin-top: 24px;
+    padding: 8px;
+    width: 160px;
+    font-size: 16px;
+    line-height: 1;
+  }
+}
+
+#page-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 14px;
+  line-height: 1;
+  z-index: 99;
+}
+
+#page-top a {
+  background-image: url(../images/784896.png);
+  background-size: cover;
+  text-decoration: none;
+  color: #40a2fd;
+  width: 70px;
+  padding: 28px 5px;
+  text-align: center;
+  display: block;
+  border-radius: 90px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+#page-top a:hover {
+  text-decoration: none;
+  opacity: 0.5;
 }
