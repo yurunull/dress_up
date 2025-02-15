@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "../../styles/styles.css";
-import { Table } from "../compoments/bunrui"; // bunrui.js からインポート
+// bunrui.js からインポート
 
 // 部位ごとの名称（localStorageを利用する場合の順番です）
-const names = ["トップス", "パンツ", "シューズ"];
+const names = ["ジャケット", "トップス", "パンツ"];
 
 const getRandomItem = (arr) => {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -15,14 +15,14 @@ const getRandomImagesFromStorage = () => {
     // 各部位ごとに画像の配列を用意（nullもあり得るので後で判定）
     const topsImages = storedData.map((item) => item.tops);
     const pantsImages = storedData.map((item) => item.pants);
-    const shoesImages = storedData.map((item) => item.shoes);
+    const jacketImages = storedData.map((item) => item.jacket);
     // ランダムに選択し、nullの場合はフォールバック画像に置き換え
     const chosenTops = getRandomItem(topsImages) || "images/error/notfound.png";
     const chosenPants =
       getRandomItem(pantsImages) || "images/error/notfound.png";
-    const chosenShoes =
-      getRandomItem(shoesImages) || "images/error/notfound.png";
-    return [chosenTops, chosenPants, chosenShoes];
+    const chosenJacket =
+      getRandomItem(jacketImages) || "images/error/notfound.png";
+    return [chosenJacket, chosenTops, chosenPants];
   } else {
     // localStorageに画像データがない場合は全てフォールバック画像を使用
     return [
