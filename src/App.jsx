@@ -1,19 +1,25 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "../src/pages/home";
 import Header from "./compoments/header";
+import Footer from "./compoments/footer";
+import Login from "../src/pages/login";
+import Add from "../src/pages/add";
 
-function App() {
+const App = () => {
   return (
     <>
     <Header />
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/add" element={<Add />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
+    <Footer />
     </>
   );
-}
+};
 
 export default App;

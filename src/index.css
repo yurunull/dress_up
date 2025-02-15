@@ -1,12 +1,19 @@
 @import "tailwindcss";
 
-
+@font-face {
+  font-family: 'Hannari Mincho';
+  src: url('../fonts/HannariMincho-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100vh;
+  font-family: 'Hannari Mincho', serif;
+  background-color: #fff0f5;
 }
 
 #root {
@@ -22,32 +29,39 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #f4b3c2;
+  color: #ff69b4;
 }
 
 .image-container {
   display: flex;
-  flex-wrap: wrap; /* 画面幅に応じて折り返し */
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100vh; /* 画面全体に広げる */
-  gap: 20px; /* 画像間の余白 */
+  gap: 20px;
+  padding: 20px 0;
 }
 
 .image-box {
   text-align: center;
-  width: 200px; /* 画像サイズを統一 */
+  width: 300px;
+  background: #fff5f8;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .image-box img {
   width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #ff69b4;
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
 }
 
 button {
@@ -57,12 +71,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ffb6c1;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: transform 0.25s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 button:hover {
-  border-color: #ffa9e2;
+  transform: translateY(-3px);
+  background-color: #ff69b4;
 }
 button:focus,
 button:focus-visible {
@@ -70,20 +86,20 @@ button:focus-visible {
 }
 
 a.btn--pink {
-  color: #976653; /* テキスト色を白に設定 */
-  background: #f5c4c8; /* 背景色をピンクに設定 */
-  border-bottom: 5px solid #f2a7a3; /* ピンクに近い色で境界線 */
-  display: inline-block; /* ボタンとしてのブロック要素化 */
-  padding: 0.6em 1.2em; /* パディングを調整 */
+  color: #ffffff;
+  background: #ffb6c1;
+  border-bottom: 5px solid #ff69b4;
+  display: inline-block;
+  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   text-align: center;
-  transition: transform 0.25s ease; /* トランスフォームにトランジションを設定 */
+  transition: transform 0.25s ease;
+  border-radius: 10px;
 }
 
 a.btn--pink:hover {
-  transform: translateY(3px); /* ホバー時にボタン本体を下に移動 */
-  color: #ffffff; /* ホバー時の文字色 */
-  background: #f2a7a3; /* 背景色をそのまま保持 */
-  border-bottom: 2px solid #ff1493; /* ホバー時の境界線色 */
+  transform: translateY(3px);
+  background: #ff69b4;
+  border-bottom: 2px solid #ff1493;
 }
