@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../src/pages/home";
 import Header from "./compoments/header";
+import Footer from "./compoments/footer";
 import Login from "../src/pages/login";
-import Register from "../src/pages/register";
+import Add from "../src/pages/add";
 
 const App = () => {
   return (
@@ -13,9 +14,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/add" element={<Add />} />
       </Routes>
     </Router>
+    <Footer />
     </>
   );
 };
