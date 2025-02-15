@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import "../../styles/styles.css";
-import Top from "../images/top.png";
-import Hat from "../images/hat.jpg";
-import Jacket from "../images/jacket.jpg";
-import Trainer from "../images/trainer.jpg";
-import Pants from "../images/pants.png";
-import Shoes from "../images/shoes.jpg";
+import { Table } from "../compoments/bunrui";  // bunrui.js からインポート
 
-const images = [Hat, Jacket, Trainer, Pants, Shoes];
+// 画像と名前のマッピング
+const images = [
+  Table.hat[0], 
+  Table.jacket[0], 
+  Table.tops[0], 
+  Table.pants[0], 
+  Table.shoes[0]
+];
+
 const names = ["帽子", "上着", "トップス", "パンツ・スカート", "靴"];
 
 const Home = () => {
   const [currentImages, setCurrentImages] = useState(images);
 
+  // 画像をランダムに並べ替える関数
   const shuffleImages = () => {
-    setCurrentImages(images.map(() => images[Math.floor(Math.random() * images.length)]));
+    const shuffledImages = images.map(() => images[Math.floor(Math.random() * images.length)]);
+    setCurrentImages(shuffledImages);
+
+    // ランダムに選ばれたアイテム名をローカルストレージに保存
+    localStorage.setItem("selectedItems", JSON.stringify(shuffledImages));
   };
 
   return (
     <div className="w-full text-center px-4">
       <section id="hero" className="mb-12">
         <div className="relative w-full flex justify-center">
-          <img src={Top} alt="top" className="w-auto max-w-full object-cover" />
+          <img src="./images/top.png" alt="top" className="w-auto max-w-full object-cover" />
         </div>
       </section>
 
@@ -39,7 +47,7 @@ const Home = () => {
           <div className="image-container">
             {currentImages.map((img, index) => (
               <div key={index} className="image-box transform transition duration-500 hover:scale-110">
-                <img src={img} alt={`transform-${index}`} />
+                <img src={"/images/" + img} alt={`transform-${index}`} />
                 <span className="name text-lg font-semibold">{names[index]}</span>
               </div>
             ))}

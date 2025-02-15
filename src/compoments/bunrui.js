@@ -1,4 +1,7 @@
 export const Table = {
     "hat": ["hat.jpg"],
-    "tops":["trainer.jpg"]
+    "jacket":["jacket.jpg"],
+    "tops":["trainer.jpg"],
+    "pants":["pants.png"],
+    "shoes":["shoes.jpg"],
 }
