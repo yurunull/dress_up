@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Add = () => {
   const [topsImage, setTopsImage] = useState(null);
   const [pantsImage, setPantsImage] = useState(null);
-  const [shoesImage, setShoesImage] = useState(null);
+  const [jacketImage, setJacketImage] = useState(null);
 
   const handleImageChange = async (e, setImage) => {
     const file = e.target.files[0];
@@ -22,15 +22,15 @@ const Add = () => {
     const imagesData = {
       tops: topsImage,
       pants: pantsImage,
-      shoes: shoesImage,
+      jacket: jacketImage,
     };
 
-    let currentImagedata = JSON.parse(
+    let currentImageData = JSON.parse(
       localStorage.getItem("imagesData") || "[]"
     );
-    currentImagedata.push(imagesData);
+    currentImageData.push(imagesData);
     // ローカルストレージに保存
-    localStorage.setItem("imagesData", JSON.stringify(currentImagedata));
+    localStorage.setItem("imagesData", JSON.stringify(currentImageData));
     alert("画像が保存されました！");
 
     // ページをリロードしてAdd画面に戻る
@@ -40,6 +40,40 @@ const Add = () => {
   return (
     <div className="w-full text-center p-4">
       <h2 className="text-4xl font-bold mb-6">画像を追加しよう！</h2>
+
+      {/* ジャケットセクション */}
+      <div className="mb-6 p-4 border-4 border-dashed border-gray-400 w-full sm:w-[300px] mx-auto">
+        <h3 className="text-2xl font-semibold mb-4">ジャケットの画像</h3>
+        <button
+          className="px-6 py-3 bg-blue-400 text-white font-bold rounded-lg"
+          onClick={() => document.getElementById("jacketInput").click()}
+        >
+          画像を選択
+        </button>
+        <input
+          type="file"
+          id="jacketInput"
+          style={{ display: "none" }}
+          onChange={(e) => handleImageChange(e, setJacketImage)}
+        />
+        {jacketImage ? (
+          <div>
+            <img
+              src={jacketImage}
+              alt="Jacket Preview"
+              className="mt-2 max-w-[200px]"
+            />
+            <button
+              onClick={() => setJacketImage(null)}
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+            >
+              削除
+            </button>
+          </div>
+        ) : (
+          <p className="mt-2">選択されていません</p>
+        )}
+      </div>
 
       {/* トップスセクション */}
       <div className="mb-6 p-4 border-4 border-dashed border-gray-400 w-full sm:w-[300px] mx-auto">
@@ -99,40 +133,6 @@ const Add = () => {
             />
             <button
               onClick={() => setPantsImage(null)}
-              className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
-            >
-              削除
-            </button>
-          </div>
-        ) : (
-          <p className="mt-2">選択されていません</p>
-        )}
-      </div>
-
-      {/* 靴セクション */}
-      <div className="mb-6 p-4 border-4 border-dashed border-gray-400 w-full sm:w-[300px] mx-auto">
-        <h3 className="text-2xl font-semibold mb-4">靴の画像</h3>
-        <button
-          className="px-6 py-3 bg-blue-400 text-white font-bold rounded-lg"
-          onClick={() => document.getElementById("shoesInput").click()}
-        >
-          画像を選択
-        </button>
-        <input
-          type="file"
-          id="shoesInput"
-          style={{ display: "none" }}
-          onChange={(e) => handleImageChange(e, setShoesImage)}
-        />
-        {shoesImage ? (
-          <div>
-            <img
-              src={shoesImage}
-              alt="Shoes Preview"
-              className="mt-2 max-w-[200px]"
-            />
-            <button
-              onClick={() => setShoesImage(null)}
               className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
             >
               削除
