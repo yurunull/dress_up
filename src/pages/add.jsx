@@ -25,9 +25,7 @@ const Add = () => {
       shoes: shoesImage,
     };
 
-    let currentImagedata = JSON.parse(
-      localStorage.getItem("imagesData") || "[]"
-    );
+    let currentImageData = JSON.parse(localStorage.getItem("imagesData") || "[]");
     currentImagedata.push(imagesData);
     // ローカルストレージに保存
     localStorage.setItem("imagesData", JSON.stringify(currentImagedata));
