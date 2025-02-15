@@ -2,9 +2,11 @@ import React from "react";
 
 function Home() {
   return (
+    <>
     <div>
-      <h1>Welcome to the Mystery Tour!</h1>
+   <a>あいう</a>
     </div>
+    </>
   );
 }
 
