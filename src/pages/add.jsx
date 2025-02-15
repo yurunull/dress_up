@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Add = () => {
   const [topsImage, setTopsImage] = useState(null);
@@ -26,9 +26,9 @@ const Add = () => {
     };
 
     let currentImageData = JSON.parse(localStorage.getItem("imagesData") || "[]");
-    currentImagedata.push(imagesData);
+    currentImageData.push(imagesData);
     // ローカルストレージに保存
-    localStorage.setItem("imagesData", JSON.stringify(currentImagedata));
+    localStorage.setItem("imagesData", JSON.stringify(currentImageData));
     alert("画像が保存されました！");
 
     // ページをリロードしてAdd画面に戻る
