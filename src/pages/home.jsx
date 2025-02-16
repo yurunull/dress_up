@@ -31,9 +31,9 @@ const getRandomImagesFromStorage = () => {
 
 const Home = () => {
   const [currentImages, setCurrentImages] = useState([
-    "./images/hat.jpg",
+    "./images/jacket.png",
+    "./images/trainer.png",
     "./images/pants.png",
-    "./images/trainer.jpg",
   ]);
   const [isTransforming, setIsTransforming] = useState(false);
   const videoRef = useRef(null);
