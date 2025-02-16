@@ -6,4 +6,5 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(),  tailwindcss()
   ],
+  base: process.env.GITHUB_PAGES ? "dress_up" : "./"
 })
