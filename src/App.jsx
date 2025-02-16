@@ -10,11 +10,11 @@ const App = () => {
   return (
     <>
     <Header />
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path="dress_up/" element={<Home />} />
-        <Route path="dress_up/login" element={<Login />} />
-        <Route path="dress_up/add" element={<Add />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/add" element={<Add />} />
       </Routes>
     </Router>
     <Footer />
